@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import SignupForm
 
 # Create your views here.
-def jiranitest(request):
+def index(request):
   return render(request, 'index.html')
 
 def register(request):
