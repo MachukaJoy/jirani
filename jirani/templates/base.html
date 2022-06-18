@@ -17,11 +17,18 @@
 <body>
 
 <div class="overlay">
- {% include 'navbar.html' %}
+{% include 'navbar.html' %}
+<div class="d-flex" id="wrapper">
+{% if user.is_authenticated%}
+  
+  
+     {% include 'sidebar.html' %}
+   {% endif %}
 
 {% block content %}
 
 {%endblock content%}
+</div>
 
     {% block scripts %}
         <script src="{% static '/js/main.js'%}"></script>
