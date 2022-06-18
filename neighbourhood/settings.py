@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'jirani',
     'bootstrap4',
     'cloudinary',
+    'fontawesome_5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

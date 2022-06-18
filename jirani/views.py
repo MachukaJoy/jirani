@@ -5,14 +5,3 @@ import datetime as dt
 # Create your views here.
 def jiranitest(request):
   return render(request, 'index.html')
-
-def news_of_day(request):
-    date = dt.date.today()
-    html = f'''
-        <html>
-            <body>
-                <h1> {date.day}-{date.month}-{date.year}</h1>
-            </body>
-        </html>
-            '''
-    return HttpResponse(html)
