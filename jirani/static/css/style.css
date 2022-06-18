@@ -5,17 +5,21 @@ body{
     background-image:url('https://media.istockphoto.com/photos/new-homes-on-a-quiet-street-in-raleigh-nc-picture-id1319269543?b=1&k=20&m=1319269543&s=170667a&w=0&h=9Nv2yeDkHR01ADDhxcY4A1PZx9veOOwPRVnNXT6Jk3c=') ;
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #ffffff;
 }
 
 @media only screen and (max-width: 767px) {
     body {
 
       background-image: url(https://images.unsplash.com/photo-1494475673543-6a6a27143fc8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTYwfHxtb2JpbGUlMjB1aSUyMGJhY2tncm91bmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60);
+      background-attachment: fixed;
     }
   }
 
 nav {
     background-color: #1C2541;
+    color: #ffffff;
 }
 
 #hint_id_username, #hint_id_password1, #hint_id_password2 {
@@ -36,12 +40,13 @@ height: 42px;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: fit-content;
 }
 
 
  #wrapper {
   overflow-x: hidden;
+  color: #ffffff;
 
 }
 
