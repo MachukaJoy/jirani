@@ -40,6 +40,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jirani',
+    'bootstrap4',
     'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
