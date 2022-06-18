@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'cloudinary',
     'fontawesome_5',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -160,6 +161,8 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGOUT_REDIRECT_URL = "login"
 
 cloudinary.config(
     cloud_name="machukaj",
