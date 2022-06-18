@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import SignupForm, UpdateProfileForm, UpdateUserForm, NeighbourHoodForm
-from .models import Profile, User
+from .models import Profile, User, Neighbourhood
 
 # Create your views here.
 @login_required(login_url='login')
@@ -53,6 +53,14 @@ def create_hood(request):
             hood = form.save(commit=False)
             hood.admin = request.user.profile
             hood.save()
+
+            return redirect('hoods')
     else:
         form = NeighbourHoodForm()
     return render(request, 'newhood.html', {'form': form})
+
+def hoods(request):
+    hoods = Neighbourhood.objects.all()
+    hoods = hoods[::-1]
+
+    return render(request, 'hoods.html', {"hoods":hoods}) 
