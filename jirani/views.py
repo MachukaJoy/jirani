@@ -68,4 +68,9 @@ def join_hood(request, id):
     neighbourhood = get_object_or_404(Neighbourhood, id=id)
     request.user.profile.neighbourhood = neighbourhood
     request.user.profile.save()
-    return redirect('hoods') 
+    return redirect('hoods')
+
+def leave_hood(request, id):
+    request.user.profile.neighbourhood = None
+    request.user.profile.save()
+    return redirect('hoods')
