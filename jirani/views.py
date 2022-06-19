@@ -3,8 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from .forms import SignupForm, UpdateProfileForm, UpdateUserForm, NeighbourHoodForm
-from .models import Profile, User, Neighbourhood
+from .forms import SignupForm, UpdateProfileForm, UpdateUserForm, NeighbourHoodForm, BusinessForm
+from .models import Profile, User, Neighbourhood, Business, Post
 
 # Create your views here.
 @login_required(login_url='login')
@@ -82,4 +82,19 @@ def hood(request, hood_id):
 def hood_occupants(request, hood_id):
     hood = Neighbourhood.objects.get(id=hood_id)
     occupants = Profile.objects.filter(neighbourhood=hood)
-    return render(request, 'occupants.html', {'occupants': occupants}) 
+    return render(request, 'occupants.html', {'occupants': occupants})
+
+def business(request, hood_id):
+    hood = Neighbourhood.objects.get(id=hood_id)
+    business = Business.objects.filter(neighbourhood=hood)
+    if request.method == 'POST':
+        form = BusinessForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.neighbourhood = hood
+            form.user = request.user.profile
+            form.save()
+            return redirect('business', hood.id)
+    else:
+        form = BusinessForm()
+    return render(request, 'business.html', {'business': business,'form':form}) 
