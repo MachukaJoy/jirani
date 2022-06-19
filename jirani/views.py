@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -20,7 +20,7 @@ def register(request):
       password = form.cleaned_data.get('password1')
       user = authenticate(username=username, password=password)
       login(request, user)
-      return redirect('welcome')
+      return redirect('index')
   else:
     form = SignupForm()
   return render(request, 'registration/signup.html', {'form': form}) 
@@ -62,5 +62,10 @@ def create_hood(request):
 def hoods(request):
     hoods = Neighbourhood.objects.all()
     hoods = hoods[::-1]
-
     return render(request, 'hoods.html', {"hoods":hoods}) 
+
+def join_hood(request, id):
+    neighbourhood = get_object_or_404(Neighbourhood, id=id)
+    request.user.profile.neighbourhood = neighbourhood
+    request.user.profile.save()
+    return redirect('hoods') 
