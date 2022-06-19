@@ -5,16 +5,22 @@
 
 <!-- Page Content -->
 <div id="page-content-wrapper">
+  {% if user.profile.neighbourhood %}
+  <div class="container-fluid" style="color:#ffffff;">
+    <h1 class="mt-4 text-center">{{user.profile.neighbourhood.name}}</h1>
+  </div>
+  {% else %}
   <div class="container-fluid" style="color:#ffffff;">
     <h1 class="mt-4 text-center">Welcome to Jirani</h1>
-    <h6 class="mt-4 text-center"><b>Know your neighborhood</b>
+    <h6 class="mt-4 text-center"><b>Know your neighborhood</b><br>
       <i>Jirani is swahili for neighbour</i></h6>
-    <p class="mt-4 text-center"> <button type="button" class="btn btn-info btn-sm">Join</button> your hood to be updated
+    <p class="mt-4 text-center"> <a href="{% url 'hoods' %}" type="button" class="btn btn-info btn-sm">View</a> your
+      hood to be updated
       about your neighborhood.</p>
-
-    <p class="mt-4 text-center"> Can't find your hood? <a href="{% url 'create_hood' %} " type="button" class="btn btn-info btn-sm">Create
+    <p class="mt-4 text-center"> Can't find your hood? <a href="{% url 'create_hood' %} " type="button"
+        class="btn btn-info btn-sm">Create
         Hood</a> </p>
-
   </div>
+  {% endif %}
 </div>
 {% endblock %}
