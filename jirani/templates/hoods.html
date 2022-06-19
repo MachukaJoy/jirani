@@ -15,7 +15,7 @@
         <p class="float-left"> <i class="fas fa-map-marker-alt"></i>   {{hood.location}}</p>
    {% if request.user.profile.neighbourhood == hood %}
     <p class="float-right"><a href="{% url 'leave_hood' hood.id %}" class="badge badge-danger">Leave Hood</a></p>
-    {% else %}
+    {% elif request.user.profile.neighbourhood == None %}
     <p class="float-right"><a href="{% url 'join_hood' hood.id %}" class="badge badge-info">Join Hood</a></p>
     {% endif %}
 
