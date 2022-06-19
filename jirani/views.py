@@ -77,6 +77,9 @@ def leave_hood(request, id):
 
 def hood(request, hood_id):
     hood = Neighbourhood.objects.get(id=hood_id)
+    return render(request, 'index.html', {'hood':hood})
+
+def hood_occupants(request, hood_id):
+    hood = Neighbourhood.objects.get(id=hood_id)
     occupants = Profile.objects.filter(neighbourhood=hood)
-    print(occupants)
-    return render(request, 'index.html', {'hood':hood, 'occupants':occupants}) 
+    return render(request, 'occupants.html', {'occupants': occupants}) 
