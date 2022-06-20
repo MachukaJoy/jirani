@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import SignupForm, UpdateProfileForm, UpdateUserForm, NeighbourHoodForm, BusinessForm, PostForm
 from .models import Profile, User, Neighbourhood, Business, Post
+from .email import send_welcome_email
 
 # Create your views here.
 
@@ -21,6 +22,8 @@ def register(request):
       form.save()
       username = form.cleaned_data.get('username')
       password = form.cleaned_data.get('password1')
+      email = form.cleaned_data['email']
+      send_welcome_email(username=username,email=email)
       user = authenticate(username=username, password=password)
       login(request, user)
       return redirect('index')

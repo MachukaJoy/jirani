@@ -170,5 +170,10 @@ cloudinary.config(
     api_key="912469896157192",
     api_secret="w_m2BGLGV7m9Mz-blCYR5dXyTBM"
     )
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 django_heroku.settings(locals(), databases=False)
