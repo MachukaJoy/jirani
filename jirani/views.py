@@ -3,13 +3,16 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from .forms import SignupForm, UpdateProfileForm, UpdateUserForm, NeighbourHoodForm, BusinessForm
+from .forms import SignupForm, UpdateProfileForm, UpdateUserForm, NeighbourHoodForm, BusinessForm, PostForm
 from .models import Profile, User, Neighbourhood, Business, Post
 
 # Create your views here.
+
+
 @login_required(login_url='login')
 def index(request):
   return render(request, 'index.html')
+
 
 def register(request):
   if request.method == 'POST':
@@ -23,7 +26,8 @@ def register(request):
       return redirect('index')
   else:
     form = SignupForm()
-  return render(request, 'registration/signup.html', {'form': form}) 
+  return render(request, 'registration/signup.html', {'form': form})
+
 
 @login_required(login_url='login')
 def profile(request, username):
@@ -35,7 +39,8 @@ def edit_profile(request, username):
     user = User.objects.get(username=username)
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
-        prof_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        prof_form = UpdateProfileForm(
+            request.POST, request.FILES, instance=request.user.profile)
         if user_form.is_valid() and prof_form.is_valid():
             user_form.save()
             prof_form.save()
@@ -45,6 +50,7 @@ def edit_profile(request, username):
         prof_form = UpdateProfileForm(instance=request.user.profile)
 
     return render(request, 'editprofile.html', {'user_form': user_form, 'prof_form': prof_form})
+
 
 def create_hood(request):
     if request.method == 'POST':
@@ -59,10 +65,12 @@ def create_hood(request):
         form = NeighbourHoodForm()
     return render(request, 'newhood.html', {'form': form})
 
+
 def hoods(request):
     hoods = Neighbourhood.objects.all()
     hoods = hoods[::-1]
-    return render(request, 'hoods.html', {"hoods":hoods}) 
+    return render(request, 'hoods.html', {"hoods": hoods})
+
 
 def join_hood(request, id):
     neighbourhood = get_object_or_404(Neighbourhood, id=id)
@@ -70,19 +78,23 @@ def join_hood(request, id):
     request.user.profile.save()
     return redirect('hoods')
 
+
 def leave_hood(request, id):
     request.user.profile.neighbourhood = None
     request.user.profile.save()
     return redirect('hoods')
 
+
 def hood(request, hood_id):
     hood = Neighbourhood.objects.get(id=hood_id)
-    return render(request, 'index.html', {'hood':hood})
+    return render(request, 'hood.html', {'hood': hood})
+
 
 def hood_occupants(request, hood_id):
     hood = Neighbourhood.objects.get(id=hood_id)
     occupants = Profile.objects.filter(neighbourhood=hood)
     return render(request, 'occupants.html', {'occupants': occupants})
+
 
 def business(request, hood_id):
     hood = Neighbourhood.objects.get(id=hood_id)
@@ -97,4 +109,29 @@ def business(request, hood_id):
             return redirect('business', hood.id)
     else:
         form = BusinessForm()
-    return render(request, 'business.html', {'business': business,'form':form}) 
+    return render(request, 'business.html', {'business': business, 'form': form})
+
+def post(request, hood_id):
+    hood = Neighbourhood.objects.get(id=hood_id)
+    post = Post.objects.filter(neighbourhood=hood)
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.neighbourhood = hood
+            form.user = request.user.profile
+            form.save()
+            return redirect('post', hood.id)
+    else:
+        form = PostForm()
+    return render(request, 'post.html', {'post': post,'form':form})
+
+def search(request):
+    if request.method == 'GET':
+        name = request.GET.get("title")
+        searchresults = Business.objects.filter(name__icontains=name).all()
+        message = f'name'
+        return render(request, 'searchresults.html', {'searchresults': searchresults,'message': message  })
+    else:
+        message = "You haven't searched for any image category"
+    return render(request, "searchresults.html") 
