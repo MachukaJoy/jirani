@@ -5,46 +5,7 @@
 
 <!-- Page Content -->
 <div id="page-content-wrapper">
-  {% if user.profile.neighbourhood %}
-  <div class="container mt-2">
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6 mt-4">
-        <div class="card mt-auto mb-auto" >
-          <h5 class="text-center card-title mt-2"><strong>{{hood.name|title}} Hood</strong></h5>
-          {%if hood.picture%}
-          <img class="rounded-circle  d-block mx-auto" height='250px' width='250px' src="{{ hood.picture.url }}">
-         {%else%}
-         <img class="rounded-circle" src="https://media.istockphoto.com/photos/new-homes-on-a-quiet-street-in-raleigh-nc-picture-id1319269543?b=1&k=20&m=1319269543&s=170667a&w=0&h=9Nv2yeDkHR01ADDhxcY4A1PZx9veOOwPRVnNXT6Jk3c=" height='250px' width='250px'  alt="">
-         {% endif%}
-            <div class="card-body">
-              <p class="float-left"><b>Admin  :</b> {{hood.admin.name}}</p>
-               {% if hood.admin  == user.profile %}
-                <p class="float-right"><a href="{% url 'occupants' hood.id %}" class="badge badge-info justify-content-center">View Occupants</a></p>
-                {% endif %}  <br>
-            <hr>
-              <p class=""><b>Occupants  :</b> {{ood.occupants.count}}</p>
-              <hr>                      
-              <p class=""><b> Location  :</b> {{hood.location}}</p>
-              <hr>
-              <p class="text-center"><b> Emergency Services</b></p>
-              <p class="float-left ml-5 text-success"><b> Police  :</b> {{hood.police}}</p>
-              <p class="float-right mr-5 text-primary"><b> Health  :</b> {{hood.health}}</p>
-             <br>
-              <hr>
-                            
-              <p class="float-left"><a href="{% url 'business' hood.id%}" class="badge badge-info">View Business</a></p>
-              <p class="float-right"><a href="#" class="badge badge-info">View Posts</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3"></div>
-    </div>
-
-</div>
-  </div>
-  {% else %}
-  <div class="container-fluid" style="color:#ffffff;">
+  <div class="container-fluid" style="color:#ffffff;"></div>
     <h1 class="mt-4 text-center">Welcome to Jirani</h1>
     <h6 class="mt-4 text-center"><b>Know your neighborhood</b><br>
       <i>Jirani is swahili for neighbour</i></h6>
@@ -54,6 +15,5 @@
     <p class="mt-4 text-center"> Can't find your hood? <a href="{% url 'create_hood' %} " type="button"
         class="btn btn-info btn-sm">Create Hood</a> </p>
   </div>
-  {% endif %}
 </div>
 {% endblock %}
