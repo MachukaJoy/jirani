@@ -72,7 +72,7 @@ def create_hood(request):
 def hoods(request):
     hoods = Neighbourhood.objects.all()
     hoods = hoods[::-1]
-    
+
     return render(request, 'hoods.html', {"hoods": hoods})
 
 
