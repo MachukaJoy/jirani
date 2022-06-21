@@ -1,28 +1,28 @@
 {% load static %}
 {% load bootstrap4 %}
 <!-- Sidebar -->
-<div class="bg-light border-right" id="sidebar-wrapper">
+<div class=" border-right" id="sidebar-wrapper" style="color:rgb(17, 231, 45); background-color: black;">
 
   <div class="sidebar-heading">{%if user.profile.profile_picture%}
     <img class="rounded-circle mr-2" src="{{ user.profile.profile_picture.url }}" height='30px' width='30px' alt="">
-    <span style="color: rgb(9, 104, 49);">{{ user.username|title }}</span>
+    <span style="color: rgb(9, 104, 49);font-size:larger; font-weight:  bolder;">{{ user.username|title }}</span>
     {%else%}
     <img class="rounded-circle mr-2"
       src="https://media.istockphoto.com/photos/new-homes-on-a-quiet-street-in-raleigh-nc-picture-id1319269543?b=1&k=20&m=1319269543&s=170667a&w=0&h=9Nv2yeDkHR01ADDhxcY4A1PZx9veOOwPRVnNXT6Jk3c="
-      height='30px' width='30px' alt=""> <span style="color: rgb(9, 104, 49);">{{ user.username|title }}</span>
+      height='30px' width='30px' alt=""> <span style="color: rgb(9, 104, 49); font-size:larger; font-weight:  bolder;">{{ user.username|title }}</span>
     {% endif%}
     </a></div>
   <div class="list-group list-group-flush">
     {% if user.profile.neighbourhood %}
-    <a href="/" class="list-group-item list-group-item-action bg-light"> Back to Home </a>
-    <a href="{%url 'hood' user.profile.neighbourhood.id%}" class="list-group-item list-group-item-action bg-light"> My Hood</a>
-    <a href="{% url 'hoods' %}" class="list-group-item list-group-item-action bg-light">Other Hoods</a>
+    <a href="/" class="list-group-item list-group-item-success list-group-item-action" style="color:black;"> Back to Home </a>
+    <a href="{%url 'hood' user.profile.neighbourhood.id%}" class="list-group-item list-group-item-success list-group-item-action" style="color:black; "> My Hood</a>
+    <a href="{% url 'hoods' %}" class="list-group-item list-group-item-success list-group-item-action" style="color:black;">Other Hoods</a>
     {% else %}
-    <a href="/" class="list-group-item list-group-item-action bg-light">HOME</a>
+    <a href="/" class="list-group-item list-group-item-success list-group-item-action" style="color:black;">HOME</a>
     {% endif %}
-    <a class="list-group-item list-group-item-action bg-light" href="{% url 'profile' user.username %}">Profile</a>
-    <a class="list-group-item list-group-item-action bg-light" href="{% url 'edit' user.username  %}"> Edit profile</a>
-    <a href="/accounts/logout" class="list-group-item list-group-item-action bg-light">Log Out</a>
+    <a class="list-group-item list-group-item-success list-group-item-action" style="color:black;" href="{% url 'profile' user.username %}">Profile</a>
+    <a class="list-group-item list-group-item-success list-group-item-action" style="color:black;" href="{% url 'edit' user.username  %}"> Edit profile</a>
+    <a href="/accounts/logout" class="list-group-item list-group-item-success list-group-item-action" style="color:black;">Log Out</a>
 
   </div>
 </div>
