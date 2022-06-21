@@ -18,7 +18,7 @@
             <div class="card-body">
               <p class="float-left" style="color: rgb(9, 104, 49);font-weight: bold;">Admin  : {{hood.admin.name}}</p>
                {% if hood.admin  == user.profile %}
-                <p class="float-right" style="color: rgb(9, 104, 49);"><a href="{% url 'occupants' hood.id %}" class="badge badge-info justify-content-center" style="color: rgb(9, 104, 49);font-weight: bold;">View Occupants</a></p>
+                <p class="float-right" style="color: rgb(9, 104, 49);"><a href="{% url 'occupants' hood.id %}" class="btn btn-outline-warning justify-content-center" style="background-color: black;font-weight: bold;">View Occupants</a></p>
                 {% endif %}  <br>
             <hr>
               <p class="" style="color: rgb(9, 104, 49);font-weight: bold;">Occupants  : {{hood.occupant.count}}</p>
@@ -31,8 +31,8 @@
              <br>
               <hr>
 
-              <p class="float-left" style="color: rgb(9, 104, 49);font-weight: bold;"><a href="{% url 'business' hood.id%}" class="badge badge-info" style="color: rgb(9, 104, 49);font-weight: bold;">View Business</a></p>
-              <p class="float-right" style="color: rgb(9, 104, 49);font-weight: bold;"><a href="{% url 'post' hood.id%}" class="badge badge-info" style="color: rgb(9, 104, 49);font-weight: bold;">View Posts</a></p>
+              <p class="float-left" style="color: rgb(9, 104, 49);font-weight: bold;"><a href="{% url 'business' hood.id%}" class="btn btn-outline-success" style="background-color: black;font-weight: bold;">View Business</a></p>
+              <p class="float-right" style="color: rgb(9, 104, 49);font-weight: bold;"><a href="{% url 'post' hood.id%}" class="btn btn-outline-info" style="background-color: black;font-weight: bold;">View Posts</a></p>
             </div>
           </div>
 

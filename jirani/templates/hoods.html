@@ -15,9 +15,9 @@
         <p class="" style="color: rgb(9, 104, 49);"> Occupants : {{hood.occupant.count}}</p>
         <p class="float-left" style="color: rgb(9, 104, 49);"> <i class="fas fa-map-marker-alt" style="color: rgb(9, 104, 49);"></i></i>{{hood.location}}</p>
    {% if request.user.profile.neighbourhood == hood %}
-    <p class="float-right" style="color: rgb(9, 104, 49);"><a href="{% url 'leave_hood' hood.id %}" style="color: rgb(9, 104, 49);" class="badge badge-danger">Leave Hood</a></p>
+    <p class="float-right" style="color: rgb(9, 104, 49);"><a href="{% url 'leave_hood' hood.id %}" style="background-color: black;" class="btn  btn-outline-warning">Leave Hood</a></p>
     {% elif request.user.profile.neighbourhood == None %}
-    <p class="float-right" style="color: rgb(9, 104, 49);"><a href="{% url 'join_hood' hood.id %}" style="color: rgb(9, 104, 49);"class="badge badge-info">Join Hood</a></p>
+    <p class="float-right" style="color: rgb(9, 104, 49);"><a href="{% url 'join_hood' hood.id %}" style="background-color: black;"class="btn btn-outline-success">Join Hood</a></p>
     {% endif %}
 
       </div>
