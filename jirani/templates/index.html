@@ -7,13 +7,12 @@
 <div id="page-content-wrapper">
   <div class="container-fluid" style="color:#ffffff;"></div>
     <h1 class="mt-4 text-center">Welcome to Jirani</h1>
-    <h6 class="mt-4 text-center"><b>Know your neighborhood</b><br>
-      <i>Jirani is swahili for neighbour</i></h6>
-    <p class="mt-4 text-center"> <a href="{% url 'hoods' %}" type="button" class="btn btn-info btn-sm">Join</a> your
-      hood to be updated
-      about your neighborhood.</p>
-    <p class="mt-4 text-center"> Can't find your hood? <a href="{% url 'create_hood' %} " type="button"
-        class="btn btn-info btn-sm">Create Hood</a> </p>
+    <h6 class="mt-4 text-center"><span style="background-color:rgb(88, 194, 88);"><b>Know your neighborhood</b></span><br><br>
+      <i><span style="background-color:rgb(173, 88, 194);color: yellow;">Jirani is swahili for neighbour</i></span></h6>
+    <p class="mt-4 text-center"> <a href="{% url 'hoods' %}" type="button" class="btn btn-info btn-lg">Join your hood</a> </p>
+    <p class="mt-4 text-center"><span style="background-color:rgb(88, 194, 88);"> Can't find your hood? Add your hood below:-) </span></p>
+    <p class="mt-4 text-center"><a href="{% url 'create_hood' %} " type="button"
+        class="btn btn-info btn-lg">Add Hood</a> </p>
   </div>
 </div>
 {% endblock %}

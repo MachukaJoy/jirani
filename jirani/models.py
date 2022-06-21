@@ -34,7 +34,7 @@ class Neighbourhood (models.Model):
     police = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
-        return f'{self.name} Mtaani'
+        return f'{self.name} Hoodarea'
 
     def create_neighborhood(self):
         self.save()
